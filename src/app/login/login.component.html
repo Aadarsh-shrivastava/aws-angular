@@ -1,0 +1,27 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first p-1 m-2">
+      <img src="../../assets/user-circle-svgrepo-com.svg" height="50px" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form class="">
+      <input type="text" id="login" class="fadeIn second form-input-field" name="login" placeholder="login">
+      <input type="text" id="password" class="fadeIn third form-input-field" name="login" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+      <a routerLink="../" class="fadeIn fourth" style="text-decoration: none;">cancel</a><br>
+      <a routerLink="../login" class="fadeIn fourth" style="text-decoration: none;">dont have an account ?</a>
+      <router-outlet></router-outlet>
+    </form>
+
+    <!-- Remind Passowrd -->
+    <!-- <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div> -->
+
+  </div>
+  </div>
+

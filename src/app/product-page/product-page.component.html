@@ -1,0 +1,45 @@
+<div class="container justify-content fadeIn ">
+    
+    <!-- <div class="card text-center product-page "> -->
+    <!-- <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " routerLink="../">close</a>
+                </li>
+            </ul>
+        </div> -->
+    <!-- <div class="card-body" style="min-height: fit-content;"> -->
+    <div class="m-4 col">
+        <div class="d-flex row">
+            
+            <img src={{this.product.image}} class ="col"alt="" height="350vh">
+            <div style="text-align: left;" class="col m-3 p-4">
+
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text"> {{reviews[1].review }}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            
+            </div>
+        </div>
+        <div>
+
+            <app-rating class="rating-stars"></app-rating>
+            <input type="text" class="row search fadeIn second form-input-field my-4 gx-0" name="search"
+            placeholder="ADD YOUR REVIEW"  >
+        </div>
+            <div class="reviews col">
+              <app-review  *ngFor="let review of reviews;"[getReview]="review"></app-review>
+              <h2 *ngFor="let review of reviews;let i=index">{{review.username}}</h2>
+
+            <!-- </div> -->
+        </div>
+    </div>
+
+    <!-- </div> -->
+</div>

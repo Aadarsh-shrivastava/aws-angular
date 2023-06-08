@@ -1,0 +1,33 @@
+<!-- As a link -->
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+      <div *ngIf="user=='null'; then login else welcomeUser"></div>
+      <ng-template #login>
+          <div>
+              
+              <a class="navbar-brand" routerLink="../login">Login</a>
+              <span class="navbar-brand">/</span>
+              <a class="navbar-brand" routerLink="register">Register</a>
+          </div>
+      </ng-template>
+      
+      <ng-template #welcomeUser>
+          <div>
+              
+              <img src="../assets/user-circle-svgrepo-com.svg" class="p-1" height="40px">
+              <a class="navbar-brand p-1" href="#">Welcome {{user}}</a>
+          </div>
+          
+      </ng-template>
+  </div>
+</nav>
+<app-stats></app-stats>
+<app-search></app-search>
+<router-outlet></router-outlet>
+<div class="container-fluid bg-trasparent my-4 p-3 catalogue" >
+
+    <div class=" row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 " style="max-width:100%">
+        <app-product-card *ngFor="let card of cards;" [product]="card"></app-product-card>
+    </div>
+    
+</div>

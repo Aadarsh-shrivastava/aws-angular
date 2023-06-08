@@ -1,0 +1,24 @@
+
+
+
+<!-- <a [routerLink]="['product-page']" [state]="product" > -->
+<a (click)="navigateToProductPage()">
+   <div class="row row-cols-1  " style="height:65vh;overflow: hidden;">
+     <div class="col">
+        <div class="card h-100 shadow-sm text-wrap" style="height: 60vh;" > <img  style="height: 45vh;object-fit: contain;"
+          src={{product.image}}
+            class="card-img-top" alt="...">
+          <div class="card-body">
+            <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-primary text-wrap">NEW</span> 
+              <h4
+                class="float-end price-hp">{{product.price}}₹</h4> </div>
+                <h5 class="card-title"><b>{{product.productName}}</b></h5>
+                  <!-- <div class="text-center my-4"> <a routerLink="product-page" class="btn btn-warning">Check offer</a> </div> -->
+                </div>
+              </div>
+      </div>
+    </div>
+    
+    
+  </a>
+ 
