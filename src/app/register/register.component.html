@@ -8,36 +8,32 @@
         <div class="form-wrapper" style="top: 0px;">
 
 
-            <form>
-                <input type="email" id="login" class="fadeIn second form-input-field form-input-field" name="Email"
-                    placeholder="Email">
-                <div class="d-flex justify-content-around m-2">
-
-                    <input type="text" id="firstname" class="fadeIn second form-input-field" name="FirstName"
-                        placeholder="First Name">
-                    <input type="text" id="LastName" class="fadeIn third form-input-field" name="LastName"
-                        placeholder="Last Name">
+            <form (ngSubmit)="registerUser()">
+                <input type="text"  [(ngModel)]="user.username"    id="Email" class="fadeIn first form-input-field form-input-field" name="Email"
+                    placeholder="UserName" required>
+                    <div class="d-flex justify-content-around m-2">
+    
+                        <input type="text"[(ngModel)]="user.firstName" id="FirstName" class="fadeIn second form-input-field" name="FirstName"
+                            placeholder="First Name">
+                        <input type="text"[(ngModel)]="user.lastName" id="LastName" class="fadeIn second form-input-field" name="LastName"
+                            placeholder="Last Name">
+                    </div>
+                    
+                    <div class="d-flex justify-content-around m-2">
+    
+                        <input type="password"[(ngModel)]="user.password" id="Password" class="fadeIn third form-input-field" name="Password"
+                        placeholder="Password" required >
+                    <!-- <input type="password" id="confirmpassword" class="fadeIn third form-input-field" name="ConfirmPassowrd"
+                        placeholder="Confirm Passowrd"> -->
                 </div>
-                
-                <div class="d-flex justify-content-around m-2">
-
-                    <input type="password" id="password" class="fadeIn second form-input-field" name="Password"
-                        placeholder="Password" >
-                    <input type="password" id="confirmpassword" class="fadeIn third form-input-field" name="ConfirmPassowrd"
-                        placeholder="Confirm Passowrd">
-                </div>
-                <input type="submit" class="fadeIn fourth" value="Register">
+                <input type="submit" class="fadeIn fourth" value="Register" >
                 <a routerLink="../" class="fadeIn fourth" style="text-decoration: none;">cancel</a><br>
-                <a routerLink="../login" class="fadeIn fourth" style="text-decoration: none;">already have an account ?</a>
+                <a routerLink="../login" class="fadeIn fourth" style="text-decoration: none;color: aliceblue;">already have an account ?</a>
                 <router-outlet></router-outlet>
             </form>
-            
         </div>
-
-        <!-- Remind Passowrd -->
-        <!-- <div id="formFooter">
-        <a class="underlineHover" href="#">Forgot Password?</a>
-      </div> -->
+        <h3 *ngIf="message!=''" class="alert alert-danger">{{message}}</h3>
+     
 
     </div>
 </div>

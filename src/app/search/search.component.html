@@ -1,9 +1,15 @@
 <div class="d-flex search-interface">
 
     <input type="text" id="search" class="fadeIn second form-input-field" name="search" placeholder="SEARCH BY NAME" >
-    <input type="text" id="search" class="fadeIn second form-input-field" name="search" placeholder="SEARCH BY BRAND" >
-    <input type="text" id="search" class="fadeIn second form-input-field" name="search" placeholder="SEARCH BY CODE" >
+    <select class=" fadeIn second form-input-field" aria-label="Default select example">
+        
+        <option selected value="name" >SEARCH BY NAME</option>
+        <option value="code">SEARCH BY CODE</option>
+        <option value="brand">SEARCH BY BRAND</option>
+      </select>
+    
 </div>
+
 <!-- <div class="dropdown bootstrap-select form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50"
                                         style="width: 100%;">
                                         <select class="form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50"

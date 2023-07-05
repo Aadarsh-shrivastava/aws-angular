@@ -9,8 +9,14 @@ import { Route, Router } from '@angular/router';
 })
 export class ProductCardComponent {
   @Input() product: any;
+
+  showStepperComp: boolean = true;
+
   constructor(private router: Router) { }
   
+  showHideStepperComp(value: boolean) {
+    this.showStepperComp = value;
+  }
   navigateToProductPage() { 
     // console.log(this.product.productName)
  

@@ -1,45 +1,90 @@
-<div class="container justify-content fadeIn ">
-    
-    <!-- <div class="card text-center product-page "> -->
-    <!-- <div class="card-header">
-            <ul class="nav nav-tabs card-header-tabs justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Active</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " routerLink="../">close</a>
-                </li>
-            </ul>
-        </div> -->
-    <!-- <div class="card-body" style="min-height: fit-content;"> -->
-    <div class="m-4 col">
-        <div class="d-flex row">
-            
-            <img src={{this.product.image}} class ="col"alt="" height="350vh">
-            <div style="text-align: left;" class="col m-3 p-4">
 
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text"> {{reviews[1].review }}</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            
+       <div class="container">
+
+           <div class="d-flex row">
+               <img src="{{product.image}}" class ="col-3"alt="" width="50%"  (change)="ngOnInit()">
+               <!-- <div class ="col-2"></div> -->
+               <div style="text-align: left;" class="col m-3 p-4">
+                
+                <h1>{{rating}}</h1>
+                <div class="col px-1"> <i class="ion-android-star icon-1x" *ngFor="let star of [].constructor(rating); let i = index"></i> <span class="d-block text-sm">{{rating}} {{rating>1?"stars":"star"}}</span> </div>
+
+                <h5 class="card-title">{{product.productName}}</h5>
+                <p class="card-text"> {{product.description}}</p>
+                <div class="d-flex justify-content-between m-3">
+                    <h1>Rs {{product.price}}</h1>
+                    <h3>code-{{product.code}}</h3>
+                    <h3>by-{{product.brandName}}</h3>
+                </div>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                
             </div>
         </div>
         <div>
 
-            <app-rating class="rating-stars"></app-rating>
-            <input type="text" class="row search fadeIn second form-input-field my-4 gx-0" name="search"
-            placeholder="ADD YOUR REVIEW"  >
-        </div>
-            <div class="reviews col">
-              <app-review  *ngFor="let review of reviews;"[getReview]="review"></app-review>
-              <h2 *ngFor="let review of reviews;let i=index">{{review.username}}</h2>
+            <!-- <app-rating class="rating-stars"></app-rating> -->
+            <form (ngSubmit)="addReview(id)">
+<div class="d-flex">
 
-            <!-- </div> -->
-        </div>
-    </div>
-
-    <!-- </div> -->
+    <input type="text" [(ngModel)]="myReview.review" class="row search fadeIn second form-input-field my-4 gx-0" name="review" placeholder="ADD YOUR REVIEW"  >
+    <label>Rating</label>
+    <select id="rating"class=" fadeIn second form-input-field" style="width: fit-content;object-fit: contain;height: inherit;margin-top: 20px;" aria-label="Default select example">
+        
+        
+        <option selected value="1" >1</option>
+        <option value="2">2 </option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
 </div>
+                <button class="btn btn-primary float-end m-3" type="submit">Raise Review</button>
+            </form>
+            </div>
+        <!-- <h1>{{myReview|json}}</h1> -->
+        <div class="reviews col">
+            <!-- <h1>reviews={{product.review}}</h1> -->
+            <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+<div  *ngFor="let review of reviews" class="container">
+      <div class="row" *ngIf="isAdmin || review.status==='Approved'">
+        <!-- Main content -->
+        <!-- <div class="col- mb-3"> -->
+          <div class="row text-left">
+            
+          </div>
+          <!-- End of post 1 -->
+          <div style="background-color: none;" class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
+            <div class="row align-items-center">
+              <div class="col-md-8  mb-sm-0" style="text-align: left;">
+                <h5>
+                  <a href="#" class="text-primary">{{review.review}} </a>
+                </h5>
+
+                <h5>
+                  <a href="#" class="text-primary">{{review.status}} </a>
+                </h5>
+                
+
+                <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#"></a> <span class="op-6"> by </span> <a class="text-black" href="#">{{review.userName}}</a></p>
+                <!-- <div class="text-sm op-5"> <a class="text-black mr-2" href="#">#C++</a> <a class="text-black mr-2" href="#">#AppStrap Theme</a> <a class="text-black mr-2" href="#">#Wordpress</a> </div> -->
+              </div>
+              <div class="col-md-4 op-7" *ngIf="isAdmin">
+                <div class="row text-center op-7">
+                  <div class="col px-1"> <i class="ion-android-star icon-1x" *ngFor="let star of [].constructor(review.rating); let i = index"></i> <span class="d-block text-sm">{{review.rating}} {{review.rating>1?"stars":"star"}}</span> </div>
+                  <div class="col px-1"> <i style="color: red;" class="ion-ios-trash icon-1x"(click)="deleteReview(review.reviewId)"></i> <span class="d-block text-sm">Remove</span> </div>
+                  <div class="col px-1"> <i [ngStyle]="{'color':review.status=='Approved'?'green':'orange'}" class="ion-ios-checkmark icon-1x"(click)="review.status!='Approved'?approveReview(review.reviewId):deleteReview(review.reviewId)"></i> <span class="d-block text-sm">{{review.status}}</span> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /End of post 1 -->
+          
+          <!-- /End of post 20 -->
+        </div>
+        <!-- Sidebar content -->
+       
+      </div>
+    <!-- </div> -->
+        </div>
+        
+    </div>

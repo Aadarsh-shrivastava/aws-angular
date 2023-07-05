@@ -1,33 +1,37 @@
 <!-- As a link -->
 <nav class="navbar bg-body-tertiary">
-  <div class="container-fluid">
-      <div *ngIf="user=='null'; then login else welcomeUser"></div>
-      <ng-template #login>
-          <div>
-              
-              <a class="navbar-brand" routerLink="../login">Login</a>
-              <span class="navbar-brand">/</span>
-              <a class="navbar-brand" routerLink="register">Register</a>
-          </div>
-      </ng-template>
-      
-      <ng-template #welcomeUser>
-          <div>
-              
-              <img src="../assets/user-circle-svgrepo-com.svg" class="p-1" height="40px">
-              <a class="navbar-brand p-1" href="#">Welcome {{user}}</a>
-          </div>
-          
-      </ng-template>
-  </div>
-</nav>
-<app-stats></app-stats>
-<app-search></app-search>
-<router-outlet></router-outlet>
-<div class="container-fluid bg-trasparent my-4 p-3 catalogue" >
+    <!-- <h1>{{isAdmin}}</h1> -->
+    <div class="container-fluid">
+        <div *ngIf="!isLoggedIn; then login else welcomeUser"></div>
+        <ng-template #login>
+            <div>
 
-    <div class=" row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 " style="max-width:100%">
-        <app-product-card *ngFor="let card of cards;" [product]="card"></app-product-card>
+                <a class="navbar-brand" routerLink="../login">Login</a>
+                <span class="navbar-brand">/</span>
+                <a class="navbar-brand" routerLink="register">Register</a>
+            </div>
+        </ng-template>
+
+        <ng-template #catalog>
+
+        </ng-template>
+           
+        <ng-template #welcomeUser>
+            <div>
+
+                <img src="../assets/user-circle-svgrepo-com.svg" class="p-1" height="40px">
+                <a class="navbar-brand p-1" href="#">Welcome {{user}}</a>
+            </div>
+            <div class="d-flex">
+
+                <h5 *ngIf="!isAdmin" class="navbar-brand btn btn-danger" (click)="toggleToAdd()" style="color: aliceblue;">RAISE FOR REVIEW</h5>
+                <h5 *ngIf="isAdmin" class="navbar-brand" (click)="goToDashboard()">DASHBOARD</h5>
+                <h5 *ngIf="isLoggedIn"  class="navbar-brand p-1" style="color: grey;" (click)="logout()">LOGOUT</h5>
+            </div>
+        </ng-template>
     </div>
-    
-</div>
+</nav>
+
+<!-- <app-home *ngIf="user!=null"> </app-home> -->
+<router-outlet></router-outlet>
+<app-add-product *ngIf="toAdd" (onClose)="toggleToAdd()" style="position: fixed;left: 50%;top: 50%;transform: translate(-50%, -50%);"></app-add-product>

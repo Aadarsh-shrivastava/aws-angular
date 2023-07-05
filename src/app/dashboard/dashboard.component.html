@@ -1,0 +1,34 @@
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link " [class.active]="onProductPage" (click)="switch()"
+          style="text-decoration: none;color: black;">Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="onReviewPage" (click)="switch()"
+          style="text-decoration: none;color: black;">Reviews</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " routerLink="../" style="text-decoration: none;color: black;">Close</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <button class="btn btn-danger float-right" (click)="switchform()">{{!toadd?'Add Product':'close'}}</button>
+    <div *ngIf="toadd; then addproduct else editproduct"></div>
+    <ng-template #addproduct>
+      <!-- <h1>{{toadd}}</h1> -->
+      <app-add-product *ngIf="toadd" style="position: fixed;left: 50%;top: 50%;transform: translate(-50%, -50%);"
+        (onClose)="switchform()"></app-add-product>
+    </ng-template>
+    <ng-template #editproduct>
+
+    </ng-template>
+
+    <app-catalog *ngIf="onProductPage==true"></app-catalog>
+  </div>
+  <div *ngIf="onProductPage==false">
+    <app-review [reviews]="allReviews"></app-review>
+  </div>
+</div>

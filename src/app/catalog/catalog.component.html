@@ -1,0 +1,36 @@
+
+
+    <div *ngFor="let product of products" class="container mt-5 mb-5">
+        <div class="d-flex justify-content-center row">
+        <div class="col-md-10">
+            <div class="row p-2 bg-white border rounded">
+                <!-- <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="../../assets/product folder/{{product.image}}"></div> -->
+                <div class="col-md-3 mt-1"><img alt="not found" class="img-fluid img-responsive rounded product-image" src="{{product.image}}"></div>
+                <div class="col-md-6 mt-1">
+                    
+                    <div class="d-flex flex-row  ">
+                        <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                        <h3>{{product.productName}}</h3>
+                    </div>
+                    <p class="text-justify text-truncate para mb-0" style="text-align: left;">{{product.description}}<br><br></p>
+                </div>
+                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                    <div class="d-flex flex-row align-items-center">
+                        <h4 class="mr-1">Rs. {{product.price}}</h4>
+                    </div>
+                   
+                    <img  style="margin: 20px;object-fit: contain;max-width: 20px;"src="https://www.svgrepo.com/show/29974/pencil.svg" (click)="switchIsEdit(product.productId)"> <img style="object-fit: contain;max-width: 20px;margin: 20px;" src="https://www.svgrepo.com/show/447911/bin.svg" alt="" (click)="deleteThisProduct(product.productId)">
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="card" >
+    <app-add-product *ngIf="isEdit" style="position: fixed;left: 50%;top: 50%;transform: translate(-50%, -50%);"[productId]="isEdit" (onClose)="modalClosed()"></app-add-product>
+
+</div>

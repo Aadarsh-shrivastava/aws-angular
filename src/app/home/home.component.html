@@ -1,0 +1,40 @@
+<div (click)="selectedCard=null">
+
+    <app-stats> </app-stats>
+    <!-- <app-search></app-search> -->
+    
+    
+    
+</div>
+<!-- <ng-template #search> -->
+<!-- </ng-template> -->
+
+    <form *ngIf="user"  (ngSubmit)="searchProducts()">
+        <div class="d-flex search-interface m-4 p-1">
+
+            <input type="text" [(ngModel)]="searchOptions.searchFor" id="search" class="fadeIn second form-input-field" name="search" placeholder="SEARCH BY NAME" required>
+            <select id="searchby" [(ngModel)]="searchOptions.searchBy" class=" fadeIn second form-input-field" aria-label="Default select example" required>
+                
+                <option selected value="name" >SEARCH BY NAME</option>
+                <option value="code">SEARCH BY CODE</option>
+                <option value="brand">SEARCH BY BRAND</option>
+            </select>
+        </div>
+        <h6 *ngIf="this.searchOptions.searchFor=='' " class="m-5 label">fields cant be empty</h6>
+        <button type="submit" class="btn btn-danger float-end m-5">SEARCH</button>
+    </form>
+
+<!-- <h2>{{searchOptions|json}}</h2> -->
+    <div id="dialog" class="container-fluid bg-trasparent my-4 p-3 catalogue">
+        <!-- <app-product-page *ngIf="selectedCard!=null" [product]="selectedCard" (change)="selectedCard=null" ></app-product-page> -->
+        
+        
+        <a  class=" row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 " style="max-width:100%">
+            
+            <app-product-card *ngFor="let card of cards;" [product]="card" (click)="redirectToProductDescriptionPage(card)"></app-product-card>
+            
+            
+        </a>
+        
+    </div>
+    <router-outlet></router-outlet>
